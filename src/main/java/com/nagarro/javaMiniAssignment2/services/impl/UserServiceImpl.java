@@ -29,7 +29,6 @@ import com.nagarro.javaMiniAssignment2.sortStrategies.impl.NameOddSortStrategy;
 import com.nagarro.javaMiniAssignment2.sortStrategies.SortContext;
 import com.nagarro.javaMiniAssignment2.validators.Validator;
 import com.nagarro.javaMiniAssignment2.validators.factory.ValidatorFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
