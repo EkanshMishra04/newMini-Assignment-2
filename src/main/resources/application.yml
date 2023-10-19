@@ -1,0 +1,22 @@
+server:
+  port : 8081
+  error:
+    include-message: always
+  
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/miniassignment2
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+    show-sql: false
