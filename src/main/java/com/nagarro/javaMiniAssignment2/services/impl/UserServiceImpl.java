@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import com.nagarro.javaMiniAssignment2.constants.ServiceConstants;
-import com.nagarro.javaMiniAssignment2.constants.RestUriConstant;
+import com.nagarro.javaMiniAssignment2.constants.RestUriConstants;
 import com.nagarro.javaMiniAssignment2.dto.JsonUserResponse;
 import com.nagarro.javaMiniAssignment2.dto.PaginationResponse;
 import com.nagarro.javaMiniAssignment2.dto.UserGenderRequest;
@@ -94,12 +94,12 @@ public class UserServiceImpl implements UserService {
 		try {
 
 			Future<UserNationalityRequest> nationalityRequestFuture = executorService.submit(() -> {
-				return api2WebClientBuilder.baseUrl(RestUriConstant.GET_USER_NATIONALITY + userMono.getFirstName()).build()
+				return api2WebClientBuilder.baseUrl(RestUriConstants.GET_USER_NATIONALITY + userMono.getFirstName()).build()
 						.get().retrieve().bodyToMono(UserNationalityRequest.class).block();
 			});
 
 			Future<UserGenderRequest> genderRequestFuture = executorService.submit(() -> {
-				return api3WebClientBuilder.baseUrl(RestUriConstant.GET_USER_GENDER + userMono.getFirstName()).build().get()
+				return api3WebClientBuilder.baseUrl(RestUriConstants.GET_USER_GENDER + userMono.getFirstName()).build().get()
 						.retrieve().bodyToMono(UserGenderRequest.class).block();
 			});
 
@@ -154,16 +154,16 @@ public class UserServiceImpl implements UserService {
 		Validator limitValidator = ValidatorFactory.getValidator(limit);
 		Validator offsetValidator = ValidatorFactory.getValidator(offset);
 
-		if (!sortTypeValidator.validate(sortType, "sortType")) {
+		if (!sortTypeValidator.validate(sortType, ServiceConstants.SORT_TYPE)) {
 			throw new CustomException("sortType can only have values Name or Age", HttpStatus.BAD_REQUEST.value());
 		}
-		if (!sortOrderValidator.validate(sortOrder, "sortOrder")) {
+		if (!sortOrderValidator.validate(sortOrder, ServiceConstants.SORT_ORDER)) {
 			throw new CustomException("sortOrder can only have values Even or Odd", HttpStatus.BAD_REQUEST.value());
 		}
-		if (!limitValidator.validate(limit, "limit")) {
+		if (!limitValidator.validate(limit, ServiceConstants.LIMIT)) {
 			throw new CustomException("limit can only have positive values", HttpStatus.BAD_REQUEST.value());
 		}
-		if (!offsetValidator.validate(offset, "offset")) {
+		if (!offsetValidator.validate(offset, ServiceConstants.OFFSET)) {
 			throw new CustomException("offset can only have positive values", HttpStatus.BAD_REQUEST.value());
 		}
 	}

@@ -3,7 +3,7 @@ package com.nagarro.javaMiniAssignment2.configuration;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import com.nagarro.javaMiniAssignment2.constants.RestUriConstant;
+import com.nagarro.javaMiniAssignment2.constants.RestUriConstants;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,7 @@ public class WebClientConfig {
 				.doOnConnected(conn -> conn.addHandlerLast(new ReadTimeoutHandler(readTimeout, TimeUnit.MILLISECONDS))
 						.addHandlerLast(new WriteTimeoutHandler(writeTimeout, TimeUnit.MILLISECONDS)));
 
-		return WebClient.builder().baseUrl(RestUriConstant.GET_RANDOM_USERS)
+		return WebClient.builder().baseUrl(RestUriConstants.GET_RANDOM_USERS)
 				.clientConnector(new ReactorClientHttpConnector(httpClient)).build();
 	}
 

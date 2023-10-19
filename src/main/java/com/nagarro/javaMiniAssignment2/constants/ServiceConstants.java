@@ -1,11 +1,22 @@
 package com.nagarro.javaMiniAssignment2.constants;
 
-public class ServiceConstants {
-	public static final String VERIFIED = "VERIFIED";
-	public static final String TO_BE_VERIFIED = "TO_BE_VERIFIED";
-	public static final String EVEN = "EVEN";
-	public static final String ODD = "ODD";
-	public static final String NAME = "NAME";
-	public static final String AGE = "AGE";
-	
+public interface ServiceConstants {
+	String VERIFIED = "VERIFIED";
+	String TO_BE_VERIFIED = "TO_BE_VERIFIED";
+	String EVEN = "EVEN";
+	String ODD = "ODD";
+	String NAME = "NAME";
+	String AGE = "AGE";
+	String STATUS_408="408";
+	String SIZE="size";
+	String DEFAULT_SIZE="1";
+	String SORT_TYPE="sortType";
+	String DEFAULT_SORT_TYPE="name";
+	String SORT_ORDER="sortOrder";
+	String DEFAULT_SORT_ORDER="Odd";
+	String LIMIT="limit";
+	String DEFAULT_LIMIT="5";
+	String OFFSET="offset";
+	String DEFAULT_OFFSET="0";
+
 }
