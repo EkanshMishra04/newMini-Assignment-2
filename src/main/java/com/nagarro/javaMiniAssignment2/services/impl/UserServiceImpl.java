@@ -1,4 +1,4 @@
-package com.nagarro.javaMiniAssignment2.services;
+package com.nagarro.javaMiniAssignment2.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import com.nagarro.javaMiniAssignment2.constants.Constant;
-import com.nagarro.javaMiniAssignment2.constants.UrlConstant;
+import com.nagarro.javaMiniAssignment2.constants.ServiceConstants;
+import com.nagarro.javaMiniAssignment2.constants.RestUriConstant;
 import com.nagarro.javaMiniAssignment2.dto.JsonUserResponse;
 import com.nagarro.javaMiniAssignment2.dto.PaginationResponse;
 import com.nagarro.javaMiniAssignment2.dto.UserGenderRequest;
@@ -21,13 +21,14 @@ import com.nagarro.javaMiniAssignment2.helper.Helper;
 import com.nagarro.javaMiniAssignment2.models.PaginationInfo;
 import com.nagarro.javaMiniAssignment2.models.User;
 import com.nagarro.javaMiniAssignment2.repository.UserRepositoryInterface;
-import com.nagarro.javaMiniAssignment2.sortStrategies.AgeEvenSortStrategy;
-import com.nagarro.javaMiniAssignment2.sortStrategies.AgeOddSortStrategy;
-import com.nagarro.javaMiniAssignment2.sortStrategies.NameEvenSortStrategy;
-import com.nagarro.javaMiniAssignment2.sortStrategies.NameOddSortStrategy;
+import com.nagarro.javaMiniAssignment2.services.UserService;
+import com.nagarro.javaMiniAssignment2.sortStrategies.impl.AgeEvenSortStrategy;
+import com.nagarro.javaMiniAssignment2.sortStrategies.impl.AgeOddSortStrategy;
+import com.nagarro.javaMiniAssignment2.sortStrategies.impl.NameEvenSortStrategy;
+import com.nagarro.javaMiniAssignment2.sortStrategies.impl.NameOddSortStrategy;
 import com.nagarro.javaMiniAssignment2.sortStrategies.SortContext;
 import com.nagarro.javaMiniAssignment2.validators.Validator;
-import com.nagarro.javaMiniAssignment2.validators.ValidatorFactory;
+import com.nagarro.javaMiniAssignment2.validators.factory.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -93,12 +94,12 @@ public class UserServiceImpl implements UserService {
 		try {
 
 			Future<UserNationalityRequest> nationalityRequestFuture = executorService.submit(() -> {
-				return api2WebClientBuilder.baseUrl(UrlConstant.GET_USER_NATIONALITY + userMono.getFirstName()).build()
+				return api2WebClientBuilder.baseUrl(RestUriConstant.GET_USER_NATIONALITY + userMono.getFirstName()).build()
 						.get().retrieve().bodyToMono(UserNationalityRequest.class).block();
 			});
 
 			Future<UserGenderRequest> genderRequestFuture = executorService.submit(() -> {
-				return api3WebClientBuilder.baseUrl(UrlConstant.GET_USER_GENDER + userMono.getFirstName()).build().get()
+				return api3WebClientBuilder.baseUrl(RestUriConstant.GET_USER_GENDER + userMono.getFirstName()).build().get()
 						.retrieve().bodyToMono(UserGenderRequest.class).block();
 			});
 
@@ -108,7 +109,7 @@ public class UserServiceImpl implements UserService {
 			if (nationalityRequestMono.getCountry().equals(new ArrayList<>())
 					|| genderRequestMono.getGender() == null) {
 
-				userMono.setVerificationStatus(Constant.TO_BE_VERIFIED);
+				userMono.setVerificationStatus(ServiceConstants.TO_BE_VERIFIED);
 			} else {
 
 				boolean flag1 = nationalityRequestMono.getCountry().stream()
@@ -116,7 +117,7 @@ public class UserServiceImpl implements UserService {
 				boolean flag2 = genderRequestMono.getGender().equalsIgnoreCase(userMono.getGender());
 
 				if (flag1 && flag2) {
-					userMono.setVerificationStatus(Constant.VERIFIED);
+					userMono.setVerificationStatus(ServiceConstants.VERIFIED);
 				}
 			}
 		} catch (ExecutionException e) {

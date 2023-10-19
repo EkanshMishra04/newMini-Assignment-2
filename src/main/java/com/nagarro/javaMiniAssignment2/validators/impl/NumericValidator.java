@@ -1,6 +1,7 @@
-package com.nagarro.javaMiniAssignment2.validators;
+package com.nagarro.javaMiniAssignment2.validators.impl;
 
 import com.nagarro.javaMiniAssignment2.exceptions.CustomException;
+import com.nagarro.javaMiniAssignment2.validators.Validator;
 
 //NumericValidator.java
 public class NumericValidator implements Validator {

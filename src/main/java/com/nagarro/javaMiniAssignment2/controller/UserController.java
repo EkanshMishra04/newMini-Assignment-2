@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.nagarro.javaMiniAssignment2.dto.PaginationResponse;
 import com.nagarro.javaMiniAssignment2.models.User;
-import com.nagarro.javaMiniAssignment2.services.UserServiceImpl;
+import com.nagarro.javaMiniAssignment2.services.impl.UserServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
