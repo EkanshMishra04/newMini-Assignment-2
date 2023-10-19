@@ -1,7 +1,10 @@
-package com.nagarro.javaMiniAssignment2.validators;
+package com.nagarro.javaMiniAssignment2.validators.factory;
 
 import com.nagarro.javaMiniAssignment2.exceptions.CustomException;
 
+import com.nagarro.javaMiniAssignment2.validators.Validator;
+import com.nagarro.javaMiniAssignment2.validators.impl.EnglishAlphabetsValidator;
+import com.nagarro.javaMiniAssignment2.validators.impl.NumericValidator;
 import org.springframework.http.HttpStatus;
 
 public class ValidatorFactory {

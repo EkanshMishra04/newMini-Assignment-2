@@ -1,4 +1,4 @@
-package com.nagarro.javaMiniAssignment2.sortStrategies;
+package com.nagarro.javaMiniAssignment2.sortStrategies.impl;
 
 import java.util.Comparator;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.nagarro.javaMiniAssignment2.models.User;
+import com.nagarro.javaMiniAssignment2.sortStrategies.SortStrategy;
 
 public class AgeOddSortStrategy implements SortStrategy {
 

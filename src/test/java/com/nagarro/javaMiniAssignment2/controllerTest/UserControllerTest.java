@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nagarro.javaMiniAssignment2.constants.Constant;
 import com.nagarro.javaMiniAssignment2.controller.UserController;
 import com.nagarro.javaMiniAssignment2.models.User;
-import com.nagarro.javaMiniAssignment2.services.UserService;
-import com.nagarro.javaMiniAssignment2.services.UserServiceImpl;
+import com.nagarro.javaMiniAssignment2.services.impl.UserServiceImpl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
